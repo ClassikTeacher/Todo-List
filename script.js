@@ -1,18 +1,27 @@
+const elemsToDo = JSON.parse(localStorage.getItem('elemsToDo'))
 const inputText = document.querySelector('.input')
 const todos = document.querySelector('.todos')
 
 let id = 1
 const list = []
+if(elemsToDo){
+    elemsToDo.forEach((elemToDo) =>{
+        addTodo(elemToDo.textTodo)
+        addELementInList(elemToDo.textTodo)
+    })
+}
+
 
 
 inputText.addEventListener('keydown', (e)=>{
     if(e.keyCode === 13) {
         let text = inputText.value
         e.preventDefault()
-       
+        
         addTodo(text)
         addELementInList(text)
-        id++
+        addLocalStorage()
+        
         defaltInput() 
         console.log(list)
     }
@@ -26,9 +35,10 @@ function defaltInput(){
 function addELementInList(text){
     const todoList = {
         idTodo: id,
-        textTOdo: text
+        textTodo: text
     }
     list.push(todoList)
+    id++
 }
 
 function deleteItem(e){
@@ -74,8 +84,16 @@ function addTodo(text){
         <span>${id}.</span> ${text} 
         `
     const deleteBtn = todo.querySelector('.btn-delete')
-    deleteBtn.addEventListener('click', deleteItem)
+    deleteBtn.addEventListener('click', (e)=>{
+        deleteItem(e)
+        addLocalStorage()
+    })
 
     document.body.querySelector('.todos').appendChild(todo)
     
+}
+
+function addLocalStorage() {
+   
+    localStorage.setItem("elemsToDo", JSON.stringify(list));
 }
