@@ -78,7 +78,37 @@ input::placeholder{
 }
 
 .container ul li span{
+    display:flex;
     padding-right: 5px;
     color: #5A0091;
     font-weight: 600;
 }
+
+.container ul li .textTodo{
+    cursor: pointer;
+    padding-right: 50%;
+}
+
+.btn-clear{
+    color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    font-size: 1.2rem;
+    border: none;
+    min-width: 400px;
+    padding: 5px 0;
+    visibility: visible;
+    cursor: pointer;
+    background: #fff;
+    margin-top: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    
+}
+.btn-clear:hover{
+    background: rgb(244, 242, 242);
+}
+.btn-clear._hidden{
+    visibility: hidden;
+}   
